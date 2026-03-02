@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KLASSY — Artisan Café & Bakery</title>
+    <meta name="description"
+        content="KLASSY — Where brutalist design meets artisan craft. Premium café experience with handcrafted pastries, specialty coffee, and an atmosphere that inspires.">
+    <meta name="keywords" content="klassy, café, artisan, bakery, coffee, pastry, premium, restaurant">
+    <meta name="author" content="KLASSY Café">
+    <meta name="robots" content="index, follow">
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="KLASSY — Artisan Café & Bakery">
+    <meta property="og:description" content="Where brutalist design meets artisan craft. Premium café experience.">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+
+<body>
+
+    <!-- Loader -->
+    <div id="loader" aria-hidden="true">
+        <div class="loader__inner">
+            <div class="loader__line"></div>
+            <span class="loader__text">KLASSY</span>
+        </div>
+    </div>
+
+    <!-- Cursor -->
+    <div id="cursor" class="custom-cursor" aria-hidden="true">
+        <div class="cursor__dot"></div>
+        <div class="cursor__ring"></div>
+    </div>
+
+    <!-- Noise overlay -->
+    <div class="noise" aria-hidden="true"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <a href="#hero" class="navbar__logo" aria-label="KLASSY Home">
+            <span class="logo__k">K</span><span class="logo__rest">LASSY</span>
+        </a>
+        <div class="navbar__links" id="nav-links">
+            <a href="#about" class="nav-link" data-index="01">About</a>
+            <a href="#menu" class="nav-link" data-index="02">Menu</a>
+            <a href="#team" class="nav-link" data-index="03">Team</a>
+            <a href="#gallery" class="nav-link" data-index="04">Gallery</a>
+            <a href="#contact" class="nav-link" data-index="05">Contact</a>
+        </div>
+        <button class="navbar__toggle" id="nav-toggle" aria-label="Toggle Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <div class="mobile-menu__inner">
+            <a href="#hero" class="mobile-link" data-index="00">Home</a>
+            <a href="#about" class="mobile-link" data-index="01">About</a>
+            <a href="#menu" class="mobile-link" data-index="02">Menu</a>
+            <a href="#team" class="mobile-link" data-index="03">Team</a>
+            <a href="#gallery" class="mobile-link" data-index="04">Gallery</a>
+            <a href="#contact" class="mobile-link" data-index="05">Contact</a>
+        </div>
+    </div>
+
+    <main>
+        <!-- ═══════════════════════════════════════
+         HERO SECTION
+    ═══════════════════════════════════════ -->
+        <section id="hero" class="hero">
+            <div class="hero__bg">
+                <img src="assets/images/slide-01.jpg" alt="Klassy Café interior" class="hero__img">
+                <div class="hero__overlay"></div>
+            </div>
+            <div class="hero__content">
+                <div class="hero__tag">
+                    <span class="tag__line"></span>
+                    <span class="tag__text">EST. 2024 — ARTISAN CAFÉ</span>
+                </div>
+                <h1 class="hero__title">
+                    <span class="title__line"><span class="title__word" data-anim="up">KLASSY</span></span>
+                    <span class="title__line"><span class="title__word" data-anim="up">CAFÉ<span
+                                class="title__accent">&</span></span></span>
+                    <span class="title__line"><span class="title__word" data-anim="up">BAKERY</span></span>
+                </h1>
+                <p class="hero__sub" data-anim="fade">Crafting memorable experiences through artisan coffee, handmade
+                    pastries, and brutalist beauty.</p>
+                <div class="hero__cta" data-anim="fade">
+                    <a href="#menu" class="btn btn--primary">
+                        <span>Explore Menu</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17" />
+                        </svg>
+                    </a>
+                    <a href="#contact" class="btn btn--outline">Reserve a Table</a>
+                </div>
+            </div>
+            <div class="hero__scroll" data-anim="fade">
+                <span>Scroll</span>
+                <div class="scroll__line"></div>
+            </div>
+            <div class="hero__stats">
+                <div class="stat">
+                    <span class="stat__num" data-count="12">0</span>
+                    <span class="stat__label">Years Open</span>
+                </div>
+                <div class="stat">
+                    <span class="stat__num" data-count="50">0</span><span class="stat__plus">+</span>
+                    <span class="stat__label">Menu Items</span>
+                </div>
+                <div class="stat">
+                    <span class="stat__num" data-count="3">0</span>
+                    <span class="stat__label">Master Chefs</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════
+         MARQUEE
+    ═══════════════════════════════════════ -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee__track">
+                <span>COFFEE</span><span class="marquee__dot">●</span>
+                <span>PASTRY</span><span class="marquee__dot">●</span>
+                <span>BAKERY</span><span class="marquee__dot">●</span>
+                <span>ARTISAN</span><span class="marquee__dot">●</span>
+                <span>CRAFT</span><span class="marquee__dot">●</span>
+                <span>COFFEE</span><span class="marquee__dot">●</span>
+                <span>PASTRY</span><span class="marquee__dot">●</span>
+                <span>BAKERY</span><span class="marquee__dot">●</span>
+                <span>ARTISAN</span><span class="marquee__dot">●</span>
+                <span>CRAFT</span><span class="marquee__dot">●</span>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+         ABOUT SECTION
+    ═══════════════════════════════════════ -->
+        <section id="about" class="about section">
+            <div class="container">
+                <div class="section__header" data-anim="reveal">
+                    <span class="section__index"></span>
+                    <span class="section__line"></span>
+                    <span class="section__label">About Us</span>
+                </div>
+                <div class="about__grid">
+                    <div class="about__text" data-anim="reveal">
+                        <h2 class="about__title">
+                            We don't just make coffee.<br>
+                            <span class="text--accent">We craft experiences.</span>
+                        </h2>
+                        <p class="about__desc">
+                            Born from a passion for perfection, KLASSY merges the art of traditional baking with
+                            contemporary design. Every cup, every pastry, every moment here is curated to leave a
+                            lasting impression.
+                        </p>
+                        <p class="about__desc">
+                            Our space is a statement — where raw concrete meets warm hospitality, and where every
+                            detail, from the grain of our espresso to the texture of our walls, tells a story.
+                        </p>
+                        <div class="about__features">
+                            <div class="feature">
+                                <div class="feature__icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5">
+                                        <path
+                                            d="M17 8h1a4 4 0 110 8h-1M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4>Specialty Coffee</h4>
+                                    <p>Single-origin beans, roasted in-house weekly</p>
+                                </div>
+                            </div>
+                            <div class="feature">
+                                <div class="feature__icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4>Artisan Pastries</h4>
+                                    <p>Handcrafted daily from organic ingredients</p>
+                                </div>
+                            </div>
+                            <div class="feature">
+                                <div class="feature__icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4>Curated Space</h4>
+                                    <p>A brutalist sanctuary designed for comfort</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about__visual" data-anim="reveal">
+                        <div class="about__img-wrapper">
+                            <img src="assets/images/about-video-bg.jpg" alt="Inside KLASSY Café" class="about__img"
+                                loading="lazy">
+                            <div class="about__img-border"></div>
+                        </div>
+                        <div class="about__thumbs">
+                            <img src="assets/images/about-thumb-01.jpg" alt="Coffee preparation" loading="lazy">
+                            <img src="assets/images/about-thumb-02.jpg" alt="Pastry closeup" loading="lazy">
+                            <img src="assets/images/about-thumb-03.jpg" alt="Café ambience" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════
+         MENU SECTION
+    ═══════════════════════════════════════ -->
+        <section id="menu" class="menu section">
+            <div class="container">
+                <div class="section__header" data-anim="reveal">
+                    <span class="section__index"></span>
+                    <span class="section__line"></span>
+                    <span class="section__label">Our Menu</span>
+                </div>
+                <h2 class="menu__title" data-anim="reveal">Curated with <span class="text--accent">precision</span></h2>
+
+                <!-- Menu Tabs -->
+                <div class="menu__tabs" data-anim="reveal">
+                    <button class="tab active" data-tab="breakfast">Breakfast</button>
+                    <button class="tab" data-tab="lunch">Lunch</button>
+                    <button class="tab" data-tab="dinner">Dinner</button>
+                    <button class="tab" data-tab="drinks">Drinks</button>
+                </div>
+
+                <!-- Menu Grid -->
+                <div class="menu__grid" id="menu-grid">
+                    <!-- Breakfast Items (default visible) -->
+                    <div class="menu-card" data-category="breakfast" data-anim="reveal">
+                        <div class="menu-card__img">
+                            <img src="assets/images/tab-item-01.png" alt="Fresh Chicken Salad" loading="lazy">
+                        </div>
+                        <div class="menu-card__info">
+                            <div class="menu-card__top">
+                                <h3>Fresh Chicken Salad</h3>
+                                <span class="menu-card__price">$10.50</span>
+                            </div>
+                            <p>Farm-fresh greens with grilled chicken, avocado, and citrus vinaigrette</p>
+                            <div class="menu-card__tags">
+                                <span>Healthy</span>
+                                <span>Popular</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card" data-category="breakfast" data-anim="reveal">
+                        <div class="menu-card__img">
+                            <img src="assets/images/tab-item-02.png" alt="Fresh Orange Juice" loading="lazy">
+                        </div>
+                        <div class="menu-card__info">
+                            <div class="menu-card__top">
+                                <h3>Fresh Orange Juice</h3>
+                                <span class="menu-card__price">$8.50</span>
+                            </div>
+                            <p>Cold-pressed oranges, no sugar added, pure sunshine in a glass</p>
+                            <div class="menu-card__tags">
+                                <span>Fresh</span>
+                                <span>Organic</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card" data-category="breakfast" data-anim="reveal">
+                        <div class="menu-card__img">
+                            <img src="assets/images/tab-item-03.png" alt="Fruit Salad Bowl" loading="lazy">
+                        </div>
+                        <div class="menu-card__info">
+                            <div class="menu-card__top">
+                                <h3>Fruit Salad Bowl</h3>
+                                <span class="menu-card__price">$9.90</span>
+                            </div>
+                            <p>Seasonal fruits with house-made granola, honey, and Greek yogurt</p>
+                            <div class="menu-card__tags">
+                                <span>Vegan</span>
+                                <span>Light</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card" data-category="breakfast" data-anim="reveal">
+                        <div class="menu-card__img">
+                            <img src="assets/images/tab-item-04.png" alt="Eggs Omelette" loading="lazy">
+                        </div>
+                        <div class="menu-card__info">
+                            <div class="menu-card__top">
+                                <h3>Eggs Omelette</h3>
+                                <span class="menu-card__price">$6.50</span>
+                            </div>
+                            <p>Free-range eggs folded with gruyère, herbs, and sun-dried tomatoes</p>
+                            <div class="menu-card__tags">
+                                <span>Classic</span>
+                                <span>Protein</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch Items -->
+                    <div class="menu-card hidden" data-category="lunch" data-anim="reveal">
+                        <div class="menu-card__img">
+                            <img src="assets/images/tab-item-04.png" alt="Gourmet Omelette" loading="lazy">
+                        </div>
+                        <div class="menu-card__info">
+                            <div class="menu-card__top">
+                                <h3>Gourmet Omelette</h3>
+                                <span class="menu-card__price">$14.00</span>
+                            </div>
+                            <p>Truffle-infused eggs with wild mushrooms and aged parmesan</p>
+                            <div class="menu-card__tags">
+                                <span>Premium</span>
+                                <span>Chef's Pick</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card hidden" data-category="lunch" data-anim="reveal">
+                        <div class="menu-card__img">
+                            <img src="assets/images/tab-item-05.png" alt="Dollma Pire" loading="lazy">
+                        </div>
+                        <div class="menu-card__info">
+                            <div class="menu-card__top">
+                                <h3>Dollma Pire</h3>
+                                <span class="menu-card__price">$18.00</span>
+                            </div>
+                            <p>Traditional stuffed vine leaves with aromatic rice and fresh herbs</p>
+                            <div class="menu-card__tags">
+                                <span>Traditional</span>
+                                <span>Signature</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card hidden" data-category="lunch" data-anim="reveal">
+                        <div class="menu-card__img">
+                            <img src="assets/images/tab-item-06.png" alt="Artisan Cheese Board" loading="lazy">
+                        </div>
+                        <div class="menu-card__info">
+                            <div class="menu-card__top">
+                                <h3>Artisan Cheese Board</h3>
+                                <span class="menu-card__price">$22.00</span>
+                            </div>
+                            <p>Curated selection of aged cheeses, honeycomb, and artisan crackers</p>
+                            <div class="menu-card__tags">
+                                <span>Sharing</span>
+                                <span>Wine Pairing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card hidden" data-category="lunch" data-anim="reveal">
+                        <div class="menu-card__img">
+                            <img src="assets/images/tab-item-01.png" alt="Garden Bowl" loading="lazy">
+                        </div>
+                        <div class="menu-card__info">
+                            <div class="menu-card__top">
+                                <h3>Garden Bowl</h3>
+                                <span class="menu-card__price">$10.00</span>
+                            </div>
+                            <p>Roasted vegetables, quinoa, tahini dressing, and microgreens</p>
+                            <div class="menu-card__tags">
+                                <span>Vegan</span>
+                                <span>Wholesome</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner Items -->
+                    <div class="menu-card hidden" data-category="dinner" data-anim="reveal">
+                        <div class="menu-card__img">
+                            <img src="assets/images/tab-item-05.png" alt="Prime Steak" loading="lazy">
+                        </div>
+                        <div class="menu-card__info">
+                            <div class="menu-card__top">
+                                <h3>Prime Steak</h3>
+                                <span class="menu-card__price">$32.00</span>
+                            </div>
+                            <p>Grass-fed ribeye with truffle butter and roasted root vegetables</p>
+                            <div class="menu-card__tags">
+                                <span>Premium</span>
+                                <span>Signature</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card hidden" data-category="dinner" data-anim="reveal">
+                        <div class="menu-card__img">
+                            <img src="assets/images/tab-item-03.png" alt="Pan-Seared Salmon" loading="lazy">
+                        </div>
+                        <div class="menu-card__info">
+                            <div class="menu-card__top">
+                                <h3>Pan-Seared Salmon</h3>
+                                <span class="menu-card__price">$28.00</span>
+                            </div>
+                            <p>Wild-caught salmon with lemon-caper sauce and asparagus</p>
+                            <div class="menu-card__tags">
+                                <span>Seafood</span>
+                                <span>Chef's Pick</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card hidden" data-category="dinner" data-anim="reveal">
+                        <div class="menu-card__img">
+                            <img src="assets/images/tab-item-06.png" alt="Lamb Chops" loading="lazy">
+                        </div>
+                        <div class="menu-card__info">
+                            <div class="menu-card__top">
+                                <h3>Herb-Crusted Lamb</h3>
+                                <span class="menu-card__price">$35.00</span>
+                            </div>
+                            <p>New Zealand lamb with rosemary jus and pomme purée</p>
+                            <div class="menu-card__tags">
+                                <span>Premium</span>
+                                <span>Popular</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card hidden" data-category="dinner" data-anim="reveal">
+                        <div class="menu-card__img">
+                            <img src="assets/images/tab-item-02.png" alt="Mushroom Risotto" loading="lazy">
+                        </div>
+                        <div class="menu-card__info">
+                            <div class="menu-card__top">
+                                <h3>Wild Mushroom Risotto</h3>
+                                <span class="menu-card__price">$24.00</span>
+                            </div>
+                            <p>Arborio rice with porcini, white wine, and shaved truffle</p>
+                            <div class="menu-card__tags">
+                                <span>Vegetarian</span>
+                                <span>Comfort</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Drinks -->
+                    <div class="menu-card hidden" data-category="drinks" data-anim="reveal">
+                        <div class="menu-card__img">
+                            <img src="assets/images/tab-item-02.png" alt="Espresso" loading="lazy">
+                        </div>
+                        <div class="menu-card__info">
+                            <div class="menu-card__top">
+                                <h3>Double Espresso</h3>
+                                <span class="menu-card__price">$4.50</span>
+                            </div>
+                            <p>Rich, full-bodied shot from our signature house blend</p>
+                            <div class="menu-card__tags">
+                                <span>Classic</span>
+                                <span>Bold</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card hidden" data-category="drinks" data-anim="reveal">
+                        <div class="menu-card__img">
+                            <img src="assets/images/tab-item-03.png" alt="Matcha Latte" loading="lazy">
+                        </div>
+                        <div class="menu-card__info">
+                            <div class="menu-card__top">
+                                <h3>Ceremonial Matcha</h3>
+                                <span class="menu-card__price">$7.00</span>
+                            </div>
+                            <p>Japanese ceremonial-grade matcha with oat milk foam art</p>
+                            <div class="menu-card__tags">
+                                <span>Trending</span>
+                                <span>Superfood</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card hidden" data-category="drinks" data-anim="reveal">
+                        <div class="menu-card__img">
+                            <img src="assets/images/tab-item-01.png" alt="Craft Cocktail" loading="lazy">
+                        </div>
+                        <div class="menu-card__info">
+                            <div class="menu-card__top">
+                                <h3>KLASSY Old Fashioned</h3>
+                                <span class="menu-card__price">$15.00</span>
+                            </div>
+                            <p>Bourbon, demerara, aromatic bitters, smoked orange peel</p>
+                            <div class="menu-card__tags">
+                                <span>Cocktail</span>
+                                <span>Signature</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card hidden" data-category="drinks" data-anim="reveal">
+                        <div class="menu-card__img">
+                            <img src="assets/images/tab-item-04.png" alt="Natural Wine" loading="lazy">
+                        </div>
+                        <div class="menu-card__info">
+                            <div class="menu-card__top">
+                                <h3>Natural Wine Flight</h3>
+                                <span class="menu-card__price">$22.00</span>
+                            </div>
+                            <p>Three curated pours from small-batch organic vineyards</p>
+                            <div class="menu-card__tags">
+                                <span>Wine</span>
+                                <span>Tasting</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════
+         FEATURED CAKES HORIZONTAL SCROLL
+    ═══════════════════════════════════════ -->
+        <section class="featured section">
+            <div class="container">
+                <h2 class="featured__title" data-anim="reveal">Signature <span class="text--accent">Creations</span>
+                </h2>
+            </div>
+            <div class="featured__scroll" data-anim="reveal">
+                <div class="featured__track">
+                    <div class="featured-card">
+                        <div class="featured-card__img">
+                            <img src="assets/images/menu-item-01.jpg" alt="Chocolate Cake" loading="lazy">
+                        </div>
+                        <div class="featured-card__info">
+                            <h3>Chocolate Cake</h3>
+                            <span class="featured-card__price">$14</span>
+                        </div>
+                    </div>
+                    <div class="featured-card">
+                        <div class="featured-card__img">
+                            <img src="assets/images/menu-item-02.jpg" alt="Klassy Pancake" loading="lazy">
+                        </div>
+                        <div class="featured-card__info">
+                            <h3>Klassy Pancake</h3>
+                            <span class="featured-card__price">$22</span>
+                        </div>
+                    </div>
+                    <div class="featured-card">
+                        <div class="featured-card__img">
+                            <img src="assets/images/menu-item-03.jpg" alt="Artisan Bread" loading="lazy">
+                        </div>
+                        <div class="featured-card__info">
+                            <h3>Artisan Bread</h3>
+                            <span class="featured-card__price">$18</span>
+                        </div>
+                    </div>
+                    <div class="featured-card">
+                        <div class="featured-card__img">
+                            <img src="assets/images/menu-item-04.jpg" alt="Blueberry Cheesecake" loading="lazy">
+                        </div>
+                        <div class="featured-card__info">
+                            <h3>Blueberry Cheesecake</h3>
+                            <span class="featured-card__price">$10</span>
+                        </div>
+                    </div>
+                    <div class="featured-card">
+                        <div class="featured-card__img">
+                            <img src="assets/images/menu-item-05.jpg" alt="Classic Cupcake" loading="lazy">
+                        </div>
+                        <div class="featured-card__info">
+                            <h3>Classic Cupcake</h3>
+                            <span class="featured-card__price">$8.50</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════
+         TEAM SECTION
+    ═══════════════════════════════════════ -->
+        <section id="team" class="team section">
+            <div class="container">
+                <div class="section__header" data-anim="reveal">
+                    <span class="section__index"></span>
+                    <span class="section__line"></span>
+                    <span class="section__label">Our Team</span>
+                </div>
+                <h2 class="team__title" data-anim="reveal">The artisans behind <span class="text--accent">every
+                        bite</span></h2>
+                <div class="team__grid">
+                    <div class="team-card" data-anim="reveal">
+                        <div class="team-card__img">
+                            <img src="assets/images/chefs-01.jpg" alt="Randy Walker — Pastry Chef" loading="lazy">
+                            <div class="team-card__overlay">
+                                <div class="team-card__social">
+                                    <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24"
+                                            fill="currentColor">
+                                            <path
+                                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                        </svg></a>
+                                    <a href="#" aria-label="Twitter"><svg width="18" height="18" viewBox="0 0 24 24"
+                                            fill="currentColor">
+                                            <path
+                                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                        </svg></a>
+                                    <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24"
+                                            fill="currentColor">
+                                            <path
+                                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                                        </svg></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-card__info">
+                            <h3>Randy Walker</h3>
+                            <span>Pastry Chef</span>
+                        </div>
+                    </div>
+                    <div class="team-card" data-anim="reveal">
+                        <div class="team-card__img">
+                            <img src="assets/images/chefs-02.jpg" alt="David Martin — Cookie Chef" loading="lazy">
+                            <div class="team-card__overlay">
+                                <div class="team-card__social">
+                                    <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24"
+                                            fill="currentColor">
+                                            <path
+                                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                        </svg></a>
+                                    <a href="#" aria-label="Twitter"><svg width="18" height="18" viewBox="0 0 24 24"
+                                            fill="currentColor">
+                                            <path
+                                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                        </svg></a>
+                                    <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24"
+                                            fill="currentColor">
+                                            <path
+                                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                                        </svg></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-card__info">
+                            <h3>David Martin</h3>
+                            <span>Head Baker</span>
+                        </div>
+                    </div>
+                    <div class="team-card" data-anim="reveal">
+                        <div class="team-card__img">
+                            <img src="assets/images/chefs-03.jpg" alt="Peter Perkson — Pancake Chef" loading="lazy">
+                            <div class="team-card__overlay">
+                                <div class="team-card__social">
+                                    <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24"
+                                            fill="currentColor">
+                                            <path
+                                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                        </svg></a>
+                                    <a href="#" aria-label="Twitter"><svg width="18" height="18" viewBox="0 0 24 24"
+                                            fill="currentColor">
+                                            <path
+                                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                        </svg></a>
+                                    <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24"
+                                            fill="currentColor">
+                                            <path
+                                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                                        </svg></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-card__info">
+                            <h3>Peter Perkson</h3>
+                            <span>Executive Chef</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════
+         GALLERY SECTION
+    ═══════════════════════════════════════ -->
+        <section id="gallery" class="gallery section">
+            <div class="container">
+                <div class="section__header" data-anim="reveal">
+                    <span class="section__index"></span>
+                    <span class="section__line"></span>
+                    <span class="section__label">Gallery</span>
+                </div>
+                <h2 class="gallery__title" data-anim="reveal">Visual <span class="text--accent">stories</span></h2>
+            </div>
+            <div class="gallery__grid" data-anim="reveal">
+                <div class="gallery__item gallery__item--tall">
+                    <img src="assets/images/slide-01.jpg" alt="Gallery 1" loading="lazy">
+                </div>
+                <div class="gallery__item">
+                    <img src="assets/images/slide-02.jpg" alt="Gallery 2" loading="lazy">
+                </div>
+                <div class="gallery__item">
+                    <img src="assets/images/about-video-bg.jpg" alt="Gallery 3" loading="lazy">
+                </div>
+                <div class="gallery__item gallery__item--wide">
+                    <img src="assets/images/slide-03.jpg" alt="Gallery 4" loading="lazy">
+                </div>
+                <div class="gallery__item">
+                    <img src="assets/images/about-thumb-01.jpg" alt="Gallery 5" loading="lazy">
+                </div>
+                <div class="gallery__item">
+                    <img src="assets/images/about-thumb-02.jpg" alt="Gallery 6" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════
+         CONTACT / RESERVATION
+    ═══════════════════════════════════════ -->
+        <section id="contact" class="contact section">
+            <div class="container">
+                <div class="section__header" data-anim="reveal">
+                    <span class="section__index"></span>
+                    <span class="section__line"></span>
+                    <span class="section__label">Contact</span>
+                </div>
+                <div class="contact__grid">
+                    <div class="contact__info" data-anim="reveal">
+                        <h2 class="contact__title">Let's start a <span class="text--accent">conversation</span></h2>
+                        <p class="contact__desc">Whether you're planning a special event or just craving the perfect
+                            espresso — we'd love to hear from you.</p>
+                        <div class="contact__details">
+                            <div class="contact__item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                                <div>
+                                    <h4>Visit Us</h4>
+                                    <p>123 Design Street, Creative District</p>
+                                </div>
+                            </div>
+                            <div class="contact__item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+                                </svg>
+                                <div>
+                                    <h4>Call Us</h4>
+                                    <p>+1 (080) 090-0990</p>
+                                </div>
+                            </div>
+                            <div class="contact__item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                                <div>
+                                    <h4>Email Us</h4>
+                                    <p>hello@klassycafe.com</p>
+                                </div>
+                            </div>
+                            <div class="contact__item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 6 12 12 16 14" />
+                                </svg>
+                                <div>
+                                    <h4>Hours</h4>
+                                    <p>Mon—Fri: 7AM — 10PM<br>Sat—Sun: 8AM — 11PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact__form-wrapper" data-anim="reveal">
+                        <form id="contact-form" class="contact__form" novalidate>
+                            <h3>Reserve a Table</h3>
+                            <div class="form__row">
+                                <div class="form__group">
+                                    <input type="text" id="name" name="name" required placeholder=" ">
+                                    <label for="name">Full Name</label>
+                                </div>
+                                <div class="form__group">
+                                    <input type="email" id="email" name="email" required placeholder=" ">
+                                    <label for="email">Email Address</label>
+                                </div>
+                            </div>
+                            <div class="form__row">
+                                <div class="form__group">
+                                    <input type="tel" id="phone" name="phone" required placeholder=" ">
+                                    <label for="phone">Phone Number</label>
+                                </div>
+                                <div class="form__group">
+                                    <input type="date" id="date" name="date" required placeholder=" ">
+                                    <label for="date">Date</label>
+                                </div>
+                            </div>
+                            <div class="form__row">
+                                <div class="form__group">
+                                    <select id="guests" name="guests" required>
+                                        <option value="" disabled selected>Number of Guests</option>
+                                        <option value="1">1 Guest</option>
+                                        <option value="2">2 Guests</option>
+                                        <option value="3">3 Guests</option>
+                                        <option value="4">4 Guests</option>
+                                        <option value="5">5 Guests</option>
+                                        <option value="6">6 Guests</option>
+                                        <option value="7">7+ Guests</option>
+                                    </select>
+                                </div>
+                                <div class="form__group">
+                                    <select id="time" name="time" required>
+                                        <option value="" disabled selected>Preferred Time</option>
+                                        <option value="breakfast">Breakfast (7—11 AM)</option>
+                                        <option value="lunch">Lunch (11 AM—3 PM)</option>
+                                        <option value="dinner">Dinner (5—10 PM)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form__group form__group--full">
+                                <textarea id="message" name="message" rows="4" placeholder=" "></textarea>
+                                <label for="message">Special Requests</label>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--full">
+                                <span>Make Reservation</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="#hero" class="footer__logo">
+                        <span class="logo__k">K</span><span class="logo__rest">LASSY</span>
+                    </a>
+                    <p>Crafting memorable experiences through artisan coffee and handmade pastries since 2024.</p>
+                </div>
+                <div class="footer__nav">
+                    <h4>Navigate</h4>
+                    <a href="#about">About</a>
+                    <a href="#menu">Menu</a>
+                    <a href="#team">Team</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer__hours">
+                    <h4>Hours</h4>
+                    <p>Mon — Fri<br><strong>7:00 AM — 10:00 PM</strong></p>
+                    <p>Sat — Sun<br><strong>8:00 AM — 11:00 PM</strong></p>
+                </div>
+                <div class="footer__social">
+                    <h4>Follow</h4>
+                    <div class="footer__social-links">
+                        <a href="#" aria-label="Instagram">Instagram</a>
+                        <a href="#" aria-label="Twitter">Twitter / X</a>
+                        <a href="#" aria-label="Facebook">Facebook</a>
+                        <a href="#" aria-label="TikTok">TikTok</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2024 KLASSY Cafe. All rights reserved.</p>
+                <p>Designed with obsession.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/app.js" defer></script>
+</body>
+
+</html>
