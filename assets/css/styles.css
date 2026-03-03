@@ -1032,7 +1032,7 @@ ol {
     border-radius: var(--radius-full);
 }
 
-/* ─── FEATURED CAKES ─── */
+/* ─── FEATURED CAROUSEL ─── */
 .featured {
     background: var(--bg-elevated);
     border-top: 1px solid var(--border);
@@ -1040,83 +1040,303 @@ ol {
     overflow: hidden;
 }
 
+.featured__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+}
+
 .featured__title {
     font-family: var(--font-display);
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
-    margin-bottom: var(--space-2xl);
+    margin-bottom: 0;
 }
 
-.featured__scroll {
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: var(--space-lg);
+.featured__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    flex-shrink: 0;
 }
 
-.featured__scroll::-webkit-scrollbar {
-    display: none;
+.carousel-btn {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 2px solid var(--border-light);
+    border-radius: 0;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--duration-fast);
 }
 
-.featured__track {
+.carousel-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+    transform: scale(1.05);
+}
+
+.carousel-btn:active {
+    transform: scale(0.95);
+}
+
+.carousel__counter {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    min-width: 70px;
+    justify-content: center;
+}
+
+.carousel__counter #carousel-current {
+    color: var(--accent);
+    font-size: var(--text-xl);
+}
+
+.carousel__divider {
+    color: var(--text-dim);
+    font-weight: 300;
+}
+
+/* Viewport & Track */
+.carousel__viewport {
+    overflow: hidden;
+    padding: 0 var(--container-pad);
+    max-width: calc(var(--container-max) + var(--container-pad) * 2);
+    margin: 0 auto;
+}
+
+.carousel__track {
     display: flex;
     gap: var(--space-xl);
-    padding: 0 var(--container-pad);
-    width: max-content;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+    cursor: grab;
 }
 
-.featured-card {
-    width: 320px;
+.carousel__track.dragging {
+    transition: none;
+    cursor: grabbing;
+}
+
+/* Carousel Card */
+.carousel-card {
+    width: 340px;
     flex-shrink: 0;
-    border-radius: var(--radius-lg);
+    border-radius: 0;
     overflow: hidden;
     background: var(--bg-card);
     border: 1px solid var(--border);
     transition: all var(--duration-base) var(--ease-out);
+    position: relative;
 }
 
-.featured-card:hover {
+.carousel-card:hover {
     border-color: var(--accent);
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-glow);
+    box-shadow: 0 0 50px var(--accent-glow), var(--shadow-lg);
 }
 
-.featured-card__img {
+.carousel-card.expanded {
+    border-color: var(--accent);
+    box-shadow: 0 0 60px var(--accent-glow), 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.carousel-card__visual {
+    position: relative;
     width: 100%;
-    height: 240px;
+    height: 280px;
     overflow: hidden;
 }
 
-.featured-card__img img {
+.carousel-card__visual img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--duration-slow) var(--ease-out);
+    transition: transform 0.8s var(--ease-out), filter 0.4s;
+    filter: grayscale(15%);
 }
 
-.featured-card:hover .featured-card__img img {
-    transform: scale(1.08);
+.carousel-card:hover .carousel-card__visual img {
+    transform: scale(1.1);
+    filter: grayscale(0%);
 }
 
-.featured-card__info {
+.carousel-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(10, 10, 10, 0.9) 0%,
+            rgba(10, 10, 10, 0.2) 40%,
+            transparent 60%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: var(--space-lg);
+    opacity: 0;
+    transition: opacity var(--duration-base);
+}
+
+.carousel-card:hover .carousel-card__overlay {
+    opacity: 1;
+}
+
+.carousel-card__badge {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    background: var(--accent);
+    color: var(--bg);
+    display: inline-block;
+}
+
+.carousel-card__expand {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0;
+    color: var(--white, #fff);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.carousel-card__expand:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
+    transform: rotate(90deg);
+}
+
+.carousel-card.expanded .carousel-card__expand {
+    transform: rotate(45deg);
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
+}
+
+.carousel-card.expanded .carousel-card__overlay {
+    opacity: 1;
+}
+
+/* Card Body */
+.carousel-card__body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--space-lg);
+    padding: var(--space-lg) var(--space-lg) var(--space-md);
 }
 
-.featured-card__info h3 {
+.carousel-card__body h3 {
     font-family: var(--font-display);
     font-size: var(--text-base);
     font-weight: 600;
 }
 
-.featured-card__price {
+.carousel-card__price {
     font-family: var(--font-display);
-    font-size: var(--text-lg);
+    font-size: var(--text-xl);
     font-weight: 700;
     color: var(--accent);
+    white-space: nowrap;
+}
+
+/* Expandable Details */
+.carousel-card__details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s var(--ease-out), padding 0.5s var(--ease-out);
+    padding: 0 var(--space-lg);
+    border-top: 0px solid transparent;
+}
+
+.carousel-card.expanded .carousel-card__details {
+    max-height: 300px;
+    padding: var(--space-md) var(--space-lg) var(--space-xl);
+    border-top: 1px solid var(--border);
+}
+
+.carousel-card__desc {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+}
+
+.carousel-card__meta {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.carousel-card__tag {
+    font-size: 0.65rem;
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 4px 12px;
+    background: var(--accent-glow);
+    color: var(--accent);
+    border: 1px solid rgba(200, 169, 126, 0.15);
+}
+
+.carousel-card__ingredients {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.carousel-card__ingredients span {
+    font-size: 0.6rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px solid var(--border-light);
+    color: var(--text-dim);
+    transition: all var(--duration-fast);
+}
+
+.carousel-card__ingredients span:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* Progress Bar */
+.carousel__progress {
+    height: 2px;
+    background: var(--border);
+    margin-top: var(--space-2xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel__progress-bar {
+    height: 100%;
+    background: var(--accent);
+    width: 10%;
+    transition: width 0.6s var(--ease-out);
+    box-shadow: 0 0 10px var(--accent-glow);
 }
 
 /* ─── TEAM ─── */
@@ -1586,6 +1806,14 @@ ol {
     .hero__content {
         padding-bottom: var(--space-3xl);
     }
+
+    .carousel-card {
+        width: 280px;
+    }
+
+    .carousel-card__visual {
+        height: 220px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1642,6 +1870,25 @@ ol {
 
     .form__row {
         grid-template-columns: 1fr;
+    }
+
+    .featured__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-lg);
+    }
+
+    .carousel-card {
+        width: 260px;
+    }
+
+    .carousel-card__visual {
+        height: 200px;
+    }
+
+    .carousel-btn {
+        width: 44px;
+        height: 44px;
     }
 
     .footer__grid {

@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const btn = contactForm.querySelector('button[type="submit"]');
       const originalText = btn.innerHTML;
-      btn.innerHTML = '<span>Reservation Sent ✓</span>';
+      btn.innerHTML = '<span>Reservación Enviada ✓</span>';
       btn.style.background = '#44ff88';
       btn.style.color = '#0a0a0a';
 
@@ -289,40 +289,179 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ══════════════════════
-  // FEATURED SCROLL DRAG
+  // FEATURED CAROUSEL
   // ══════════════════════
-  const scrollContainer = document.querySelector('.featured__scroll');
-  if (scrollContainer) {
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+  const carouselTrack = document.getElementById('carousel-track');
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+  const currentCounter = document.getElementById('carousel-current');
+  const totalCounter = document.getElementById('carousel-total');
+  const progressBar = document.getElementById('carousel-progress');
 
-    scrollContainer.addEventListener('mousedown', (e) => {
-      isDown = true;
-      scrollContainer.style.cursor = 'grabbing';
-      startX = e.pageX - scrollContainer.offsetLeft;
-      scrollLeft = scrollContainer.scrollLeft;
+  if (carouselTrack && prevBtn && nextBtn) {
+    const cards = carouselTrack.querySelectorAll('.carousel-card');
+    const totalCards = cards.length;
+    let currentIndex = 0;
+    let cardWidth = 0;
+    let gap = 0;
+    let maxIndex = 0;
+
+    // Calculate dimensions
+    function calcDimensions() {
+      if (cards.length === 0) return;
+      cardWidth = cards[0].offsetWidth;
+      gap = parseInt(getComputedStyle(carouselTrack).gap) || 24;
+      const viewportWidth = carouselTrack.parentElement.offsetWidth;
+      const visibleCards = Math.floor(viewportWidth / (cardWidth + gap));
+      maxIndex = Math.max(0, totalCards - visibleCards);
+    }
+
+    calcDimensions();
+    window.addEventListener('resize', () => {
+      calcDimensions();
+      currentIndex = Math.min(currentIndex, maxIndex);
+      updateCarousel();
     });
 
-    scrollContainer.addEventListener('mouseleave', () => {
-      isDown = false;
-      scrollContainer.style.cursor = 'grab';
+    // Update carousel position
+    function updateCarousel(animate = true) {
+      const offset = currentIndex * (cardWidth + gap);
+      if (!animate) carouselTrack.style.transition = 'none';
+      carouselTrack.style.transform = `translateX(-${offset}px)`;
+      if (!animate) {
+        carouselTrack.offsetHeight; // force reflow
+        carouselTrack.style.transition = '';
+      }
+
+      // Update counter
+      if (currentCounter) {
+        currentCounter.textContent = String(currentIndex + 1).padStart(2, '0');
+      }
+      if (totalCounter) {
+        totalCounter.textContent = String(totalCards).padStart(2, '0');
+      }
+
+      // Update progress bar
+      if (progressBar) {
+        const progress = maxIndex > 0 ? ((currentIndex) / maxIndex) * 100 : 100;
+        progressBar.style.width = Math.max(10, progress) + '%';
+      }
+
+      // Update button states
+      prevBtn.style.opacity = currentIndex === 0 ? '0.3' : '1';
+      nextBtn.style.opacity = currentIndex >= maxIndex ? '0.3' : '1';
+    }
+
+    updateCarousel();
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+      }
     });
 
-    scrollContainer.addEventListener('mouseup', () => {
-      isDown = false;
-      scrollContainer.style.cursor = 'grab';
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+        updateCarousel();
+      }
     });
 
-    scrollContainer.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
+    // Drag / swipe support
+    let isDragging = false;
+    let startX = 0;
+    let currentTranslate = 0;
+    let dragOffset = 0;
+
+    carouselTrack.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.pageX;
+      currentTranslate = currentIndex * (cardWidth + gap);
+      carouselTrack.classList.add('dragging');
       e.preventDefault();
-      const x = e.pageX - scrollContainer.offsetLeft;
-      const walk = (x - startX) * 2;
-      scrollContainer.scrollLeft = scrollLeft - walk;
     });
 
-    scrollContainer.style.cursor = 'grab';
+    carouselTrack.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      startX = e.touches[0].pageX;
+      currentTranslate = currentIndex * (cardWidth + gap);
+      carouselTrack.classList.add('dragging');
+    }, { passive: true });
+
+    const onMove = (pageX) => {
+      if (!isDragging) return;
+      dragOffset = pageX - startX;
+      const translate = currentTranslate - dragOffset;
+      carouselTrack.style.transform = `translateX(-${translate}px)`;
+    };
+
+    carouselTrack.addEventListener('mousemove', (e) => onMove(e.pageX));
+    carouselTrack.addEventListener('touchmove', (e) => onMove(e.touches[0].pageX), { passive: true });
+
+    const onEnd = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      carouselTrack.classList.remove('dragging');
+
+      const threshold = cardWidth * 0.25;
+      if (dragOffset > threshold && currentIndex > 0) {
+        currentIndex--;
+      } else if (dragOffset < -threshold && currentIndex < maxIndex) {
+        currentIndex++;
+      }
+      dragOffset = 0;
+      updateCarousel();
+    };
+
+    carouselTrack.addEventListener('mouseup', onEnd);
+    carouselTrack.addEventListener('mouseleave', onEnd);
+    carouselTrack.addEventListener('touchend', onEnd);
+
+    // Expand/collapse cards on click
+    cards.forEach(card => {
+      const expandBtn = card.querySelector('.carousel-card__expand');
+      const visual = card.querySelector('.carousel-card__visual');
+
+      const toggleExpand = (e) => {
+        e.stopPropagation();
+        const isExpanded = card.classList.contains('expanded');
+
+        // Collapse all others
+        cards.forEach(c => c.classList.remove('expanded'));
+
+        if (!isExpanded) {
+          card.classList.add('expanded');
+          // Animate with GSAP if available
+          if (typeof gsap !== 'undefined') {
+            gsap.fromTo(card.querySelector('.carousel-card__details'),
+              { opacity: 0, y: -10 },
+              { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', delay: 0.1 }
+            );
+          }
+        }
+      };
+
+      if (expandBtn) expandBtn.addEventListener('click', toggleExpand);
+      if (visual) visual.addEventListener('click', toggleExpand);
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      const featuredSection = document.getElementById('featured');
+      if (!featuredSection) return;
+      const rect = featuredSection.getBoundingClientRect();
+      const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+      if (!isVisible) return;
+
+      if (e.key === 'ArrowLeft' && currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+      } else if (e.key === 'ArrowRight' && currentIndex < maxIndex) {
+        currentIndex++;
+        updateCarousel();
+      }
+    });
   }
 
   // ══════════════════════
